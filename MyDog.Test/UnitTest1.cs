@@ -1,6 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Data.Common;
 using System.Data.SqlClient;
+using PetaPoco;
 
 namespace MyDog.Test
 {
@@ -26,6 +27,21 @@ namespace MyDog.Test
                 var dr = cmd.ExecuteReader();
 
             }
+        }
+
+
+        [TestMethod]
+        public void TestMethod2()
+        {
+            var test = System.Configuration.ConfigurationManager.ConnectionStrings["test"];
+            DbProviderFactoriesExecutionTask dbProvider = new DbProviderFactoriesExecutionTask();
+            dbProvider.Execute();
+            PetaPoco.DatabaseProvider.RegisterCustomProvider<InterceptorSqlClient>("InterceptorSqlClient");
+            var db = new Database(test.ConnectionString, "InterceptorSqlClient");
+
+
+            db.Execute("select * from t1");
+
         }
     }
 }

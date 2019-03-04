@@ -10,17 +10,18 @@ namespace MyDog.Core
     {
         public void Publish<T>(T message)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public Guid Subscribe<T>(Action<T> action)
         {
-            throw new NotImplementedException();
+            return Guid.Empty;
+            //throw new NotImplementedException();
         }
 
         public void Unsubscribe<T>(Guid subscriptionId)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
     }
 }
